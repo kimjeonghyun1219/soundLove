@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사진 슬라이드 쇼</title>
+    <style>
+        /* 전체 페이지 배치 및 스타일 설정 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+        }
+
+        #slideshow {
+            position: relative;
+            width: 80%;
+            height: 80%;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            object-fit: contain; /* 이미지를 화면에 맞추면서 비율 유지 */
+        }
+
+        .active {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+<div id="slideshow">
+    <img class="slide active" src="https://i.postimg.cc/13Qx0y5m/1.jpg" alt="사진 1">
+    <img class="slide" src="https://i.postimg.cc/1zvLZ60X/2.jpg" alt="사진 2">
+    <img class="slide" src="https://i.postimg.cc/yd5tDHbz/3.jpg" alt="사진 3">
+    <img class="slide" src="https://i.postimg.cc/MHQ4RFCf/4.jpg" alt="사진 4">
+    <img class="slide" src="https://i.postimg.cc/662FD886/5.jpg" alt="사진 5">
+</div>
+
+<script>
+    let slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+
+    function showNextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+
+        setTimeout(showNextSlide, 500); // 0.5초마다 사진 전환
+    }
+
+    setTimeout(showNextSlide, 500); // 첫 슬라이드 0.5초 후 전환
+</script>
+
+</body>
+</html>
